@@ -12,7 +12,7 @@
 #git init = inicializa el proyecto en la carpeta actual
 #git status = entrega el estado de la carpeta actual
 #git add = añade un cambio al repositorio
-
+#git commit -m "" crea una nueva versión 
 
 def AgregarLibro(libros):
      
