@@ -13,6 +13,11 @@
 #git status = entrega el estado de la carpeta actual
 #git add = añade un cambio al repositorio
 #git commit -m "" crea una nueva versión 
+#git checkout HEAD/MASTER // se usara más adelante
+#git branch -M main / creal la rama principal a publicar github
+#git remote add origin https
+#git push origin main
+#publica el cambio en el remoto, si yo agrego el
 
 def AgregarLibro(libros):
      
