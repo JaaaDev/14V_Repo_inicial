@@ -18,6 +18,8 @@
 #git remote add origin https
 #git push origin main
 #publica el cambio en el remoto, si yo agrego el
+#git add .
+#git push
 
 def AgregarLibro(libros):
      
