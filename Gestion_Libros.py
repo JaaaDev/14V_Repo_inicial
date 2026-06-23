@@ -20,13 +20,27 @@
 #publica el cambio en el remoto, si yo agrego el
 #git add .
 #git push
+#FUNCIONES CREADAS
+#AgregarLibro = se encarga de añadir libros del diccionario a la lista.
+#BuscaXNombre = da la opción de busqueda de libro por nombre
+
+#BuscaXPrecio = se utiliza para buscar libros por rango de precio.
+
+#Elimina_Libro = elimina libro de la lista
+#Actualiza_Libro = actualiza el libro de la lista
+
+#----Se juntaron las consultas con diferentes tipos de retorno 
+# BuscaXIdXLista
+##BuscaID = solo es para validar si el ID no se repite al Agregar un nuevo libro.
+#BuscaXIndice = Busca el indice del libro a buscar, la busqueda se realiza por el ID del libro.
+#BuscaXId = Se utiliza para buscar libros por su id utilizado en el diccionario.
+
 ###############################################################################################
 #########################FUNCIONES#############################################################
 ###############################################################################################
 def AgregarLibro(libros):
-     print("Pasa a agregar 1")
      if libros["id"]>0 and libros["titulo"]!= "" and libros["precio"]>0:
-          print("Pasa a agregar 2")
+          
           if libros["disponible"] == "SI":
              libros["disponible"] == True
           else:
@@ -73,58 +87,83 @@ def BuscaXNombre(b_libreria, str_libro_buscado):
           else:
                print("La opción ingresada es incorrecta, debe ser SI o NO. ")
 ###############################################################################################
-def BuscaXId_Filtro2(b_libreria, int_id):
-     cuenta_libros = 0
-     indice_libro = 0
-     print("===========================================")
-     for indice, valor in enumerate(b_libreria):
-          #if valor["id"] == int_id and indice !=0:
-          if valor["id"] == int_id:
-               cuenta_libros+=1
-               print("El libro se encuentra registrado")
-               print(f"INDICE LIBRERIA : {indice}")
-               print(f"ID : {valor["id"]}")
-               print(f"Titulo : {valor["titulo"]}")
-               print(f"Precio : {valor["precio"]}")
-               if valor["disponible"] == True:
-                    print(f"Disponible : SI")
-               else:
-                    print(f"Disponible : NO")
-               print("===========================================")
-               indice_libro = indice
-     if cuenta_libros == 0:
-          print("No se ha logrado encontrar el libro que busca")
-          print("===========================================")
-     return indice_libro
+def BuscaXIdXLista(b_libreria, int_id,Tipo):
+     match Tipo:
+          case 1:
+               for indice, valor in enumerate(b_libreria):
 
-def BuscaXId(b_libreria, int_id):
-     cuenta_libros = 0
-     print("===========================================")
-     for indice, valor in enumerate(b_libreria):
-          if valor["id"] == int_id:
-          #if valor["id"] == int_id and indice !=0:
-               cuenta_libros+=1
-               print("El libro se encuentra registrado")
-               print(f"INDICE LIBRERIA : {indice}")
-               print(f"ID : {valor["id"]}")
-               print(f"Titulo : {valor["titulo"]}")
-               print(f"Precio : {valor["precio"]}")
-               if valor["disponible"] == True:
-                    print(f"Disponible : SI")
-               else:
-                    print(f"Disponible : NO")
+                    if valor["id"] == int_id:
+                         
+                         print("El ID ingresado ya existe, intente nuevamente!")
+                         return True
+                    else: 
+                         print("El ID ingresado es valido")
+                         return False
+          case 2:
+               cuenta_libros = 0
+               indice_libro = -1
                print("===========================================")
-     if cuenta_libros == 0:
-          print("No se ha logrado encontrar el libro que busca")
-          print("===========================================")
-     while (repite_busqueda := input("¿Desea realizar una nueva busqueda? SI/NO : ").strip().upper()) in ("SI","NO"):
-          if repite_busqueda == "SI":
-               return True
-          elif repite_busqueda == "NO":
-               return False
-          else:
-               print("La opción ingresada es incorrecta, debe ser SI o NO. ")
-###############################################################################################
+               for indice, valor in enumerate(b_libreria):
+                    #if valor["id"] == int_id and indice !=0:
+                    if valor["id"] == int_id:
+                         cuenta_libros+=1
+                         print("El libro se encuentra registrado")
+                         print(f"INDICE LIBRERIA : {indice}")
+                         print(f"ID : {valor["id"]}")
+                         print(f"Titulo : {valor["titulo"]}")
+                         print(f"Precio : {valor["precio"]}")
+                         if valor["disponible"] == True:
+                              print(f"Disponible : SI")
+                         else:
+                              print(f"Disponible : NO")
+                         print("===========================================")
+                         indice_libro = indice
+               if cuenta_libros == 0:
+                    print("No se ha logrado encontrar el libro que busca")
+                    print("===========================================")
+               return indice_libro
+          case 3:
+               cuenta_libros = 0
+               print("===========================================")
+               for indice, valor in enumerate(b_libreria):
+                    if valor["id"] == int_id:
+                    #if valor["id"] == int_id and indice !=0:
+                         cuenta_libros+=1
+                         print("El libro se encuentra registrado")
+                         print(f"INDICE LIBRERIA : {indice}")
+                         print(f"ID : {valor["id"]}")
+                         print(f"Titulo : {valor["titulo"]}")
+                         print(f"Precio : {valor["precio"]}")
+                         if valor["disponible"] == True:
+                              print(f"Disponible : SI")
+                         else:
+                              print(f"Disponible : NO")
+                         print("===========================================")
+               if cuenta_libros == 0:
+                    print("No se ha logrado encontrar el libro que busca")
+                    print("===========================================")
+               while (repite_busqueda := input("¿Desea realizar una nueva busqueda? SI/NO : ").strip().upper()) in ("SI","NO"):                             
+                    if repite_busqueda == "SI":
+                         return True
+                    elif repite_busqueda == "NO":
+                         return False
+                    else:
+                         print("La opción ingresada es incorrecta, debe ser SI o NO. ")
+          case 4:
+               print("===========================================")
+               for indice, valor in enumerate(b_libreria):
+                         print("El libro se encuentra registrado")
+                         print(f"INDICE LIBRERIA : {indice}")
+                         print(f"ID : {valor["id"]}")
+                         print(f"Titulo : {valor["titulo"]}")
+                         print(f"Precio : {valor["precio"]}")
+                         if valor["disponible"] == True:
+                              print(f"Disponible : SI")
+                         else:
+                              print(f"Disponible : NO")
+                         print("===========================================")
+               return "Lista Finalizada"
+#########################################################################################################
 def BuscaXPrecio(b_libreria, lowprice, maxprice):
      cuenta_libros = 0
      for indice, valor in enumerate(b_libreria):
@@ -155,24 +194,14 @@ def BuscaXPrecio(b_libreria, lowprice, maxprice):
           else:
                print("La opción ingresada es incorrecta, debe ser SI o NO. ")
 
-###############################################################################################
-def BuscaID(b_libreria,b_id):
-     for indice, valor in enumerate(b_libreria):
 
-          if valor["id"] == b_id:
-               
-               print("El ID ingresado ya existe, intente nuevamente!")
-               return True
-          else: 
-               print("El ID ingresado es valido")
-               return False
 ###############################################################################################
 def Elimina_Libro(b_libreria,b_id):
      print("===========================================")
      print("==============ELIMINAR LIBRO===============")
 
-     busca_indice = BuscaXIdXEliminar(b_libreria,b_id)
-     if busca_indice != 0:
+     busca_indice = BuscaXIdXLista(b_libreria,b_id,2)
+     if busca_indice != -1:
           libro_eliminado = b_libreria.pop(busca_indice)
           print(libro_eliminado)
      else:
@@ -182,19 +211,21 @@ def Elimina_Libro(b_libreria,b_id):
 def Actualiza_Libro(b_libreria,b_id):
      print("===========================================")
      print("==============Actualiza LIBRO===============")
-     busca_indice = BuscaXId_Filtro2(b_libreria,b_id)
-     if busca_indice != 0:
+     busca_indice = BuscaXIdXLista(b_libreria,b_id,2)
+     if busca_indice != -1:
           b_libreria[busca_indice]["titulo"] = input("Ingrese el nuevo titulo :")
           b_libreria[busca_indice]["precio"] = int(input("Ingrese el nuevo precio :"))
           while (disponible := input("Ingrese el nuevo disponibilidad (SI/NO):").strip().upper()) in ("SI","NO"):
                if disponible == "SI":
                     b_libreria[busca_indice]["disponible"] == True
+                    break
                elif disponible == "NO":
                     b_libreria[busca_indice]["disponible"] == False
+                    break
                else:
                     print("La opción ingresada es incorrecta, debe ser SI o NO. ")
      else:
-          print(f"El libro ID : {b_id} no se encuentra para ser eliminado")
+          print(f"El libro ID : {b_id} no se encuentra para ser actualizado")
      return False
 ###############################################################################################
 ###########################MAIN################################################################
@@ -221,7 +252,7 @@ while True:
                               busca_id = True
                               while busca_id:
                                    id = int(input("Ingrese el ID (debe ser único y >0) : "))
-                                   busca_id = BuscaID(libreria,id)
+                                   busca_id = BuscaXIdXLista(libreria,id,1)
 
 
 
@@ -250,7 +281,7 @@ while True:
                               match menu_busca_libro:
                                    case 1:
                                         busca_id_libro = int(input("Ingrese el ID del libro a buscas : "))
-                                        c_busca_libro = BuscaXId(libreria,busca_id_libro)
+                                        c_busca_libro = BuscaXIdXLista(libreria,busca_id_libro,3)
                                    case 2:
                                         busca_nombre_libro = input("Ingrese el nombre del libro a buscar : ")
                                         c_busca_libro = BuscaXNombre(libreria,busca_nombre_libro)
@@ -286,7 +317,7 @@ while True:
                               print("==Actualización de libro==")
                               act_libro = int(input("Ingrese el Indice del libro que desea Actualizar : "))
                               
-                              c_actualiza_libro = Elimina_Libro(libreria, act_libro)
+                              c_actualiza_libro = Actualiza_Libro(libreria, act_libro)
                               
                          except ValueError as ALE:
                               print(f"Error al actualizar libro :{ALE}")
@@ -294,8 +325,10 @@ while True:
                               print(f"Error al actualizar libro : EX =>{ALE_EX}")
 
                  case 5:
-                    infinito = float('inf') 
-                    BuscaXPrecio(libreria,0,infinito)
+                    #infinito = float('inf') 
+                    #BuscaXPrecio(libreria,0,infinito)
+                    BuscaXIdXLista(libreria,-1,4)
+                    pass
                  case 6:
                       print("Gracias por usar el sistema. Vuelva Pronto")
                       break
@@ -305,3 +338,47 @@ while True:
         print(f"Error al ingresar una opción, los numeros a ingresar deben ser de 1 a 6")
     except Exception as EM:
         print(f"Error no identificado : {EM}")
+
+
+###############################################################################################
+#Funciones que se desecharon#
+########################################################
+###############################################################################################
+def BuscaID(b_libreria,b_id):
+     for indice, valor in enumerate(b_libreria):
+
+          if valor["id"] == b_id:
+               
+               print("El ID ingresado ya existe, intente nuevamente!")
+               return True
+          else: 
+               print("El ID ingresado es valido")
+               return False
+def BuscaXId(b_libreria, int_id):
+     cuenta_libros = 0
+     print("===========================================")
+     for indice, valor in enumerate(b_libreria):
+          if valor["id"] == int_id:
+          #if valor["id"] == int_id and indice !=0:
+               cuenta_libros+=1
+               print("El libro se encuentra registrado")
+               print(f"INDICE LIBRERIA : {indice}")
+               print(f"ID : {valor["id"]}")
+               print(f"Titulo : {valor["titulo"]}")
+               print(f"Precio : {valor["precio"]}")
+               if valor["disponible"] == True:
+                    print(f"Disponible : SI")
+               else:
+                    print(f"Disponible : NO")
+               print("===========================================")
+     if cuenta_libros == 0:
+          print("No se ha logrado encontrar el libro que busca")
+          print("===========================================")
+     while (repite_busqueda := input("¿Desea realizar una nueva busqueda? SI/NO : ").strip().upper()) in ("SI","NO"):
+          if repite_busqueda == "SI":
+               return True
+          elif repite_busqueda == "NO":
+               return False
+          else:
+               print("La opción ingresada es incorrecta, debe ser SI o NO. ")
+###############################################################################################
