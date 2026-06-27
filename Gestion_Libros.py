@@ -2,9 +2,19 @@
 #FUNCIONES CREADAS
 #AgregarLibro = se encarga de añadir libros del diccionario a la lista.
 #BuscaXNombre = da la opción de busqueda de libro por nombre
-
 #BuscaXPrecio = se utiliza para buscar libros por rango de precio.
 
+#git init = inicializa el proyecto en la carpeta actual
+#git status = entrega el estado de la carpeta actual
+#git add = añade un cambio al repositorio
+#git commit -m "" crea una nueva versión 
+#git checkout HEAD/MASTER // se usara más adelante
+#git branch -M main / crea la rama principal a publicar github
+#git remote add origin https
+#git push origin main
+#publica el cambio en el remoto, si yo agrego el
+#git add .
+#git push
 #Elimina_Libro = elimina libro de la lista
 #Actualiza_Libro = actualiza el libro de la lista
 
